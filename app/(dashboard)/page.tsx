@@ -1,4 +1,5 @@
 import { GetFormStats, GetForms } from "@/actions/form";
+import { getIdCookie } from "@/actions/session";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
 import { ReactNode, Suspense } from "react";
@@ -40,7 +41,8 @@ export default function Home() {
 }
 
 async function CardStatsWrapper() {
-  const stats = await GetFormStats();
+  const userId = await getIdCookie();
+  const stats = await GetFormStats(userId);
   return <StatsCards loading={false} data={stats} />;
 }
 
@@ -134,7 +136,8 @@ function FormCardSkeleton() {
 }
 
 async function FormCards() {
-  const forms = await GetForms();
+  const userId = await getIdCookie();
+  const forms = await GetForms(userId);
   return (
     <>
       {forms.map((form) => (

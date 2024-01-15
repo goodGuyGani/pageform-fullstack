@@ -16,6 +16,7 @@ import {
 } from "./ui/alert-dialog";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
+import { getIdCookie } from "@/actions/session";
 
 function PublishFormBtn({ id }: { id: number }) {
   const [loading, startTransition] = useTransition();
@@ -23,7 +24,8 @@ function PublishFormBtn({ id }: { id: number }) {
 
   async function publishForm() {
     try {
-      await PublishForm(id);
+      const userId = await getIdCookie();
+      await PublishForm(id, userId);
       toast({
         title: "Success",
         description: "Your form is now available to the public",

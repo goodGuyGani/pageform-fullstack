@@ -3,6 +3,7 @@ import { Button } from "./ui/button";
 import { HiSaveAs } from "react-icons/hi";
 import useDesigner from "./hooks/useDesigner";
 import { UpdateFormContent } from "@/actions/form";
+import { getIdCookie } from "@/actions/session";
 import { toast } from "./ui/use-toast";
 import { FaSpinner } from "react-icons/fa";
 
@@ -13,7 +14,8 @@ function SaveFormBtn({ id }: { id: number }) {
   const updateFormContent = async () => {
     try {
       const jsonElements = JSON.stringify(elements);
-      await UpdateFormContent(id, jsonElements);
+      const userId = await getIdCookie();
+      await UpdateFormContent(id, jsonElements, userId);
       toast({
         title: "Success",
         description: "Your form has been saved",

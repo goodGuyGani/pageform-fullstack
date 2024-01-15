@@ -12,6 +12,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { format, formatDistance } from "date-fns";
 import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
+import { getIdCookie } from "@/actions/session";
 
 async function FormDetailPage({
   params,
@@ -21,7 +22,8 @@ async function FormDetailPage({
   };
 }) {
   const { id } = params;
-  const form = await GetFormById(Number(id));
+  const userId = await getIdCookie();
+  const form = await GetFormById(Number(id, userId));
   if (!form) {
     throw new Error("form not found");
   }
@@ -101,7 +103,8 @@ type Row = { [key: string]: string } & {
 };
 
 async function SubmissionsTable({ id }: { id: number }) {
-  const form = await GetFormWithSubmissions(id);
+  const userId = await getIdCookie();
+  const form = await GetFormWithSubmissions(id, userId);
 
   if (!form) {
     throw new Error("form not found");

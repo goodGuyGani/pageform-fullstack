@@ -10,6 +10,17 @@ datasource db {
   url       = env("POSTGRES_PRISMA_URL") // uses connection pooling
 }
 
+model User {
+  id Int @id @default(autoincrement())
+  email String
+  firstName String
+  lastName String
+  password String
+  createdAt DateTime @default(now())
+
+  @@unique([email, firstName, lastName])
+}
+
 model Form {
   id          Int      @id @default(autoincrement())
   userId      String

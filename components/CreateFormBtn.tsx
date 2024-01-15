@@ -19,6 +19,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { toast } from "./ui/use-toast";
 import { CreateForm } from "@/actions/form";
+import { getIdCookie } from "@/actions/session";
 import { BsFileEarmarkPlus } from "react-icons/bs";
 import { useRouter } from "next/navigation";
 
@@ -30,7 +31,8 @@ function CreateFormBtn() {
 
   async function onSubmit(values: formSchemaType) {
     try {
-      const formId = await CreateForm(values);
+      const userId = await getIdCookie();
+      const formId = await CreateForm(values, userId);
       toast({
         title: "Success",
         description: "Form created successfully",
