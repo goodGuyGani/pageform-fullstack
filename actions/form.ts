@@ -60,7 +60,7 @@ export async function CreateForm(data: formSchemaType, id:any) {
   return form.id;
 }
 
-export async function GetForms(id:number) {
+export async function GetForms(id:any) {
 
   return await prisma.form.findMany({
     where: {
@@ -72,7 +72,7 @@ export async function GetForms(id:number) {
   });
 }
 
-export async function GetFormById(id: number, userId: number) {
+export async function GetFormById(id: number, userId: any) {
 
   return await prisma.form.findUnique({
     where: {
@@ -82,7 +82,7 @@ export async function GetFormById(id: number, userId: number) {
   });
 }
 
-export async function UpdateFormContent(id: number, jsonContent: string, userId: number) {
+export async function UpdateFormContent(id: number, jsonContent: string, userId: any) {
 
   return await prisma.form.update({
     where: {
@@ -95,7 +95,7 @@ export async function UpdateFormContent(id: number, jsonContent: string, userId:
   });
 }
 
-export async function PublishForm(id: number, userId: number) {
+export async function PublishForm(id: number, userId: any) {
 
   return await prisma.form.update({
     data: {
@@ -143,7 +143,7 @@ export async function SubmitForm(formUrl: string, content: string) {
   });
 }
 
-export async function GetFormWithSubmissions(id: number, userId: number) {
+export async function GetFormWithSubmissions(id: number, userId: any) {
 
   return await prisma.form.findUnique({
     where: {
