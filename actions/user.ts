@@ -1,6 +1,6 @@
 "use server";
 import prisma from "@/lib/prisma";
-import { createUserSchemaType } from "@/schema/createUser";
+import { createUserSchemaType } from "@/schemas/createUser";
 
 export async function createUser(form: createUserSchemaType) {
   return await prisma.user.create({
