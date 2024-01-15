@@ -69,7 +69,6 @@
     "zod": "^3.22.2"
   },
   "devDependencies": {
-    "eslint-plugin-unused-imports": "^3.0.0",
     "prisma": "^5.3.1"
   }
 }
