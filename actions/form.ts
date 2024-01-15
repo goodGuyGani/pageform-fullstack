@@ -5,7 +5,7 @@ import { formSchema, formSchemaType } from "@/schemas/form";
 
 class UserNotFoundErr extends Error {}
 
-export async function GetFormStats(id:number) {
+export async function GetFormStats(id:any) {
   
 
   const stats = await prisma.form.aggregate({
