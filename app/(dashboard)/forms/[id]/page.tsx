@@ -23,7 +23,7 @@ async function FormDetailPage({
 }) {
   const { id } = params;
   const userId = await getIdCookie();
-  const form = await GetFormById(Number(id, userId));
+  const form = await GetFormById(Number(id), userId);
   if (!form) {
     throw new Error("form not found");
   }
